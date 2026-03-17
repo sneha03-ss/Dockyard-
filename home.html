@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dockyard Consignment Management</title>
+    <style>
+        /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3ec78, #af4261);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #f3ec78;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    gap: 5px;
+}
+
+.search-bar input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    background: #ff6b6b;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.search-bar button:hover {
+    background: #f06595;
+}
+
+/* Form Styles */
+.form-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.user-form {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-form.active {
+    display: flex;
+}
+
+input, textarea {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+button {
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Dockyard Management</div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showForm('consignment')">Consignment</a></li>
+            <li><a href="#" onclick="showForm('storage')">Storage</a></li>
+            <li><a href="#" onclick="showForm('rent')">Rent</a></li>
+            <li><a href="#" onclick="showForm('archive')">Archive</a></li>
+            <li><a href="fetcharchive.php">Archive Details</a></li>
+            <li><a href="fetchconsignment.php">Consignment Details</a></li>
+            <li><a href="fetchstorage.php">Storage Details</a></li>
+            <li><a href="fetchrent.php">Rent Details</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." />
+            <button>Search</button>
+        </div>
+    </nav>
+
+    <!-- Forms Section -->
+    <div class="form-container">
+        <!-- Consignment Form -->
+         
+            <form id="consignment" class="user-form active" action="consignment.php" method="post">
+            <h2>Consignment Form</h2>
+            <input type="number" name="a" placeholder="Consignment ID" required>
+            <input type="number" name="b" placeholder="Consignment Weight" required>
+            <input type="number" name="c" placeholder="Number Of Days" required>
+            <input type="number" name="d" placeholder="Sender ID" required>
+            <input type="number" name="e" placeholder="Distributor ID" required>
+            <input type="date"   name="6" placeholder="Arrival Date" required>
+            <input type="date"   name="7" placeholder="Collection Date" required>
+          
+            <button type="submit" onClick="handleFormSubmit()" >Submit</button>
+        </form>
+        
+    
+        
+
+        <!-- Storage Form -->
+        <form id="storage" class="user-form" action="storage.php" method="post">
+            <h2>Storage Form</h2>
+            <input type="text" name="a" placeholder="Consignment No" required>
+            <input type="number" name="b" placeholder="Number Of Days" required>
+            <input type="number" name="c" placeholder="Block No" required>
+            <input type="number" name="d" placeholder="Area No" required>
+            <button type="submit" onClick="handleFormSubmit()" >Submit</button>
+        </form>
+
+        <!-- Rent Form -->
+        <form id="rent" class="user-form" action="rent.php" method="post">
+            <h2>Rent Form</h2>
+            <input type="text" name="a" placeholder="Consignment No" required>
+            <input type="number" name="b" placeholder="Number Of Days" required>
+            <input type="number" name="c" placeholder="Rent Per Day" required>
+            <input type="number" name="d" placeholder="Total Rent" required>
+            <input type="number" name="e" placeholder="Fine Amount" required>
+            <input type="number" name="f" placeholder="Total amount" required>
+            <button type="submit" onClick="handleFormSubmit()" >Submit</button>
+        </form>
+
+        <!-- Archive Form -->
+        <form id="archive" class="user-form">
+            <h2>Archive Form</h2>
+            <input type="text" name="a" placeholder="Consignment No" required>
+            <input type="text" name="b" placeholder="Shipment Weight" required>
+            <input type="text" name="c" placeholder="Number Of Days" required>
+            <input type="text" name="d" placeholder="Sender ID" required>
+            <input type="text" name="e" placeholder="Distributor ID" required>
+            <input type="text" name="f" placeholder="Rent Recieved" required>
+            <button type="submit" onClick="handleFormSubmit()" >Submit</button>
+        </form>
+       
+    </div>
+
+    <script>
+        // Show the selected form and hide others
+function showForm(formId) {
+    const forms = document.querySelectorAll('.user-form');
+    forms.forEach(form => {
+        form.classList.remove('active');
+    });
+
+    document.getElementById(formId).classList.add('active');
+}
+
+
+    function handleFormSubmit() {
+      alert("Form is being submitted!");
+    }
+ 
+
+    </script>
+</html>
