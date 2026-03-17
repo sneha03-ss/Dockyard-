@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dockyard Consignment Management</title>
+    <style>
+        /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3ec78, #af4261);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Form Container */
+.form-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+input:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    outline: none;
+}
+
+input[type=submit]
+{
+background: linear-gradient(45deg, #ff6b6b, #f06595);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+}
+
+
+input[type=submit]:hover 
+{
+transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+ }
+
+/* Table Styles */
+.table-container {
+    width: 100%;
+    max-width: 800px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dockyard Consignment Management</h1>
+        <p>Manage your consignments efficiently and effortlessly</p>
+    </header>
+
+    <div class="container">
+        <!-- Sender Form -->
+        <section class="form-container">
+            <h2>Add Sender Information</h2>
+            <form action="send.php" method="post">
+                <input type="text" name="a" placeholder="Sender ID" required>
+                <input type="text" name="b" placeholder="Business Name" required>
+                <input type="text" name="c" placeholder="Consignment No." required>
+                <input type="text" name="d" placeholder="Product ID" required>
+                <input type="date" name="e" required>
+                <input type="submit" value="Add Sender" onClick="handleFormSubmit()" >
+               
+            </form>
+            <br>
+            <form action="fetchsend.php">
+                <input type = "submit" value = "Fetch Sender Details">
+            </form>
+        </section>
+</div>
+<div class="container">
+        <!-- Distributor Form -->
+        <section class="form-container">
+            <h2>Add Distributor Information</h2>
+            <form action="distributor.php" method="post">
+                <input type="text" name="a" placeholder="Distributor ID" required>
+                <input type="text" name="b" placeholder="Consignment No" required>
+                <input type="text" name="c" placeholder="Distributor Name" required>
+                <input type="text" name="d" placeholder="Product ID" required>
+		        <input type="date" name="e" required>
+               <input type="submit" value ="Add Distributor" onClick="handleFormSubmit()" >
+            </form>
+            <br>
+            <form action="fetchdistributor.php">
+                <input type = "submit" value = "Fetch Distributor Details">
+            </form>
+        </section>
+</div>
+
+<div class="container">
+        <!-- Product Form -->
+        <section class="form-container">
+            <h2>Add Product Information</h2>
+            <form action="product.php" method="post">
+                <input type="text" name="a" placeholder="Product ID" required>
+                <input type="text" name="b" placeholder="Product Type" required>
+                <input type="text" name="c" placeholder="Product Quantity" required>
+                <input type="date" name="d" required>
+		        <input type="date" name="e" required>
+                <input type="number" name="f" placeholder="Consignment Number" required>
+               <input type="submit" value="Add Product" onClick="handleFormSubmit()" >
+            </form>
+            <br>
+            <form action="fetchproduct.php">
+                <input type = "submit" value = "Fetch Product Details">
+            </form>
+        </section>
+</div>
+
+
+<script>
+    function handleFormSubmit() {
+      alert("Form is being submitted!");
+    }
+  </script>
+
+
+</body>
+</html>
